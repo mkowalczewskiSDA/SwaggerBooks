@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
+@AllArgsConstructor
 public @Data
 class Book {
     private String title;

@@ -13,8 +13,12 @@ import java.util.stream.Collectors;
 @Service
 public class BooksService {
 
-    @Autowired
     JsonParser jsonParser;
+
+    @Autowired
+    public void setJsonParser(JsonParser jsonParser) {
+        this.jsonParser = jsonParser;
+    }
 
     public Optional<Book> findBookByIndustryIdentifier(String industryIdentifier) {
         return jsonParser.getBooksList()
@@ -43,11 +47,16 @@ public class BooksService {
     }
 
     public List<Book> getBooksByPrice() {
+        forTest();
         return jsonParser.getBooksList()
                 .stream()
                 .filter(Book::isAvailibleInPl)
                 .sorted(Comparator.comparing(Book::getPriceInPl).reversed())
                 .collect(Collectors.toList());
+    }
+
+    public void forTest(){
+        System.out.println("test");
     }
 
 }
